@@ -21,16 +21,16 @@ void reserve(Vector *v, size_t newCapacity) {
     if (newCapacity == 0) v->data = NULL;
     v->data = (int*) realloc(v->data ,sizeof(int) * newCapacity);
     if (v->data == NULL) {
-        fprintf(stderr, "Wrong value: newCapacity");
+        fprintf(stderr, "Wrong value: newCapacity = %llu", newCapacity);
         exit(1);
     }
     v->capacity = newCapacity;
     if (newCapacity < v->size) v->size = newCapacity;
 }
 
-void clear(Vector *v) {
-    v->size = 0;
-}
+    void clear(Vector *v) {
+        v->size = 0;
+    }
 
 void shrinkToFit(Vector *v) {
     v->capacity = v->size;
@@ -62,7 +62,7 @@ void pushBack(Vector *v, int x) {
     } else if (isFull(v)) {
         reserve(v, v->capacity * 2);
     }
-    v->data[v->size++] = x;
+    *(v->data + v->size++) = x;
 }
 
 void popBack(Vector *v) {

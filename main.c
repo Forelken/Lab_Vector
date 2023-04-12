@@ -54,6 +54,8 @@ void test_popBack_notEmptyVector() {
     assert(v.size == 1);
     popBack(&v);
     assert(v.size == 0 && v.capacity == 1);
+
+    deleteVector(&v);
 }
 
 void test_atVector_nonEmptyVector() {
@@ -73,6 +75,8 @@ void test_atVector_nonEmptyVector() {
     assert(v.size == 4);
 
     assert(&v.data[2] == atVector(&v, 2));
+
+    deleteVector(&v);
 }
 
 void test_atVector_requestToLastElement() {
@@ -87,6 +91,8 @@ void test_atVector_requestToLastElement() {
 
     pushBack(&v, 13);
     assert(&v.data[4] == atVector(&v, 4));
+
+    deleteVector(&v);
 }
 
 void test_back_oneElementInVector() {
@@ -104,6 +110,8 @@ void test_back_oneElementInVector() {
 
     popBack(&v);
     assert(&v.data[3] == back(&v));
+
+    deleteVector(&v);
 }
 
 void test_front_oneElementInVector() {
@@ -124,6 +132,8 @@ void test_front_oneElementInVector() {
 
     reserve(&v, 2);
     assert(&v.data[0] == front(&v));
+
+    deleteVector(&v);
 }
 
 void test() {
