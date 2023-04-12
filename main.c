@@ -1,6 +1,8 @@
 #include <assert.h>
+#include <malloc.h>
 
 #include "libs/data_structures/vector/vector.h"
+#include "libs/data_structures/vector/vectorVoid.h"
 
 
 void test_pushBack_emptyVector() {
@@ -148,6 +150,12 @@ void test() {
 
 int main() {
     test();
+
+    size_t size = SIZE_MAX;
+    char *a = (char *) malloc(sizeof(char) * size);
+    VectorVoid aVoid = {a, size, SIZE_MAX, sizeof(char)};
+
+    free(a);
 
     return 0;
 }
