@@ -1,0 +1,5 @@
+# ninja log v5
+3	272	7030188633415593	build.ninja	a0cda856e6440055
+1	133	7030188635976481	CMakeFiles/Vector.dir/main.c.obj	890e84247184105b
+8	142	7030188635976481	CMakeFiles/Vector.dir/libs/data_structures/vector/vector.c.obj	ca2d8de65f385f1b
+142	320	7030188637816778	Vector.exe	95b36574d02e0c62
