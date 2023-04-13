@@ -38,10 +38,10 @@ void popBack(Vector *v);
 
 // Коммит четвертый
 
-int* atVector(Vector *v, size_t index);
+int *atVector(Vector *v, size_t index);
 
-int* back(Vector *v);
+int *back(Vector *v);
 
-int* front(Vector *v);
+int *front(Vector *v);
 
 #endif //VECTORS_VECTOR_H

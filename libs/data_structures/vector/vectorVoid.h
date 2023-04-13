@@ -4,24 +4,34 @@
 #include <stdio.h>
 
 typedef struct vectorVoid {
-    void *data;             // указатель на нулевой элемент вектора
-    size_t size;            // размер вектора
-    size_t capacity;        // вместимость вектора
-    size_t baseTypeSize;    // размер базового типа:
-                            // например, если вектор хранит int -
-                            // то поле baseTypeSize = sizeof(int)
-                            // если вектор хранит float -
-                            // то поле baseTypeSize = sizeof(float)
+    void *data;
+    size_t size;
+    size_t capacity;
+    size_t baseTypeSize;
 } VectorVoid;
 
-VectorVoid createVector(size_t n, size_t baseTypeSize);
+VectorVoid createVectorV(size_t n, size_t baseTypeSize);
 
-void reserve(VectorVoid *v, size_t newCapacity);
+void reserveV(VectorVoid *v, size_t newCapacity);
 
-void clear(VectorVoid *v);
+void clearV(VectorVoid *v);
 
-void shrinkToFit(VectorVoid *v);
+void shrinkToFitV(VectorVoid *v);
 
-void deleteVector(VectorVoid *v);
+void deleteVectorV(VectorVoid *v);
+
+//
+
+bool isEmptyV(VectorVoid *v);
+
+bool isFullV(VectorVoid *v);
+
+void getVectorValueV(VectorVoid *v, size_t index, void *destination);
+
+void setVectorValueV(VectorVoid *v, size_t index, void *source);
+
+void popBackV(VectorVoid *v);
+
+void pushBackV(VectorVoid *v, void *source);
 
 #endif //VECTOR_VECTORVOID_H

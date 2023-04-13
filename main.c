@@ -138,6 +138,104 @@ void test_front_oneElementInVector() {
     deleteVector(&v);
 }
 
+//
+
+void test_pushBackV_emptyVector() {
+    VectorVoid v = createVectorV(0, sizeof(char));
+    assert(isEmptyV(&v));
+
+    char a = 'a';
+    pushBackV(&v, &a);
+    char a1;
+    getVectorValueV(&v, 0, &a1);
+    assert(a1 == a && v.capacity == 1 && v.size == 1);
+
+    char b = 'b';
+    reserveV(&v, 0);
+    pushBackV(&v, &b);
+    getVectorValueV(&v, 0, &a1);
+    assert(a1 == b && v.capacity == 1 && v.size == 1);
+
+    char c = 'c';
+    reserveV(&v, 0);
+    pushBackV(&v, &c);
+    getVectorValueV(&v, 0, &a1);
+    assert(a1 == c && v.capacity == 1 && v.size == 1);
+
+    deleteVectorV(&v);
+}
+
+void test_pushBackV_fullVector() {
+    VectorVoid v = createVectorV(0, sizeof(float));
+    assert(isFullV(&v));
+
+    float a = 0.123f;
+    pushBackV(&v, &a);
+    float a1;
+    getVectorValueV(&v, 0, &a1);
+    assert(a1 == a && v.capacity == 1 && v.size == 1);
+
+    float b = 0.132f;
+    pushBackV(&v, &b);
+    getVectorValueV(&v, 1, &a1);
+    assert(a1 == b && v.capacity == 2 && v.size == 2);
+
+    float c = 0.213f;
+    float d = 0.231f;
+    pushBackV(&v, &c);
+    pushBackV(&v, &d);
+    getVectorValueV(&v, 2, &a1);
+    assert(a1 == c && v.capacity == 4 && v.size == 4);
+
+    float e = -150.150f;
+    pushBackV(&v, &e);
+    getVectorValueV(&v, 4, &a1);
+    assert(a1 == e && v.capacity == 8 && v.size == 5);
+
+    deleteVectorV(&v);
+}
+
+void test_popBackV_notEmptyVector() {
+    VectorVoid v = createVectorV(0, sizeof(int));
+    int a = 10;
+    pushBackV(&v, &a);
+
+    assert(v.size == 1);
+    popBackV(&v);
+    assert(v.size == 0 && v.capacity == 1);
+
+    int b = -820;
+    pushBackV(&v, &b);
+
+    assert(v.size == 1);
+    popBackV(&v);
+    assert(v.size == 0 && v.capacity == 1);
+
+    deleteVectorV(&v);
+}
+
+void test_setVectorValueV_nonEmptyVector() {
+    VectorVoid v = createVectorV(SIZE_MAX, sizeof(unsigned long long));
+    unsigned long long a = 1000000000000;
+    pushBackV(&v, &a);
+    unsigned long long b = 755;
+    setVectorValueV(&v, 0, &b);
+    assert(v.size == 1);
+
+    unsigned long long a1;
+    getVectorValueV(&v, 0, &a1);
+    assert(b == a1);
+
+    unsigned long long c = 100500;
+    setVectorValueV(&v, 0, &c);
+    assert(v.size == 1);
+
+    getVectorValueV(&v, 0, &a1);
+    assert(c == a1);
+
+    deleteVectorV(&v);
+}
+
 void test() {
     test_pushBack_emptyVector();
     test_pushBack_fullVector();
@@ -146,16 +244,15 @@ void test() {
     test_atVector_requestToLastElement();
     test_back_oneElementInVector();
     test_front_oneElementInVector();
+
+    test_pushBackV_emptyVector();
+    test_pushBackV_fullVector();
+    test_popBackV_notEmptyVector();
+    test_setVectorValueV_nonEmptyVector();
 }
 
 int main() {
     test();
-
-    size_t size = SIZE_MAX;
-    char *a = (char *) malloc(sizeof(char) * size);
-    VectorVoid aVoid = {a, size, SIZE_MAX, sizeof(char)};
-
-    free(a);
 
     return 0;
 }
